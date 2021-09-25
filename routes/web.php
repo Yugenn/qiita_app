@@ -1,7 +1,7 @@
 <?php
-
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/articles', ArticleController::class);
