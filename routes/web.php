@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +17,11 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/',[ArticleController::class,'index']);
+Route::resource('/articles', ArticleController::class)
+->middleware('auth');
+// Route::redirect('/',route('articles.index'),302);
 
-Route::resource('/articles', ArticleController::class);
 Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
